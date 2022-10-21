@@ -57,7 +57,7 @@ void quadtex( GLfloat v0[3], GLfloat v1[3], GLfloat v2[3], GLfloat v3[3],
    (smin,tmin),(smax,tmax): coordenadas de textura de v0 y v2 respectivamente
    NxM: resolucion opcional (por defecto 10x10)
    Dibuja el cuadrilatero de entrada con resolucion MxN, normales y ccordenadas
-   de textura según rango dado. 
+   de textura segï¿½n rango dado. 
    Se asume antihorario en la entrada para caras frontales                      */
 
 void ejes();
@@ -237,10 +237,21 @@ void quadtex(GLfloat v0[3], GLfloat v1[3], GLfloat v2[3], GLfloat v3[3],
 }
 void ejes()
 {
-    //Construye la Display List compilada de una flecha vertical
-    GLuint id = glGenLists(1);
-    glNewList(id,GL_COMPILE);			
-        //Brazo de la flecha
+    // Construye unos ejes de longitud 1
+	/// Por precaucion no usar listas con client arrays!
+
+    //Construye los ejes
+	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
+	glPushAttrib(GL_ENABLE_BIT|GL_CURRENT_BIT);
+	glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+    //Eje X en rojo
+    glColor3fv(ROJO);
+    glPushMatrix();
+    glRotatef(-90,0,0,1);
         glBegin(GL_LINES);
             glVertex3f(0,0,0);
             glVertex3f(0,1,0);
@@ -252,35 +263,43 @@ void ejes()
         glTranslatef(0.0,0.0,-1/10.0);
 		glutSolidCone(1/50.0,1/10.0,10,1);
         glPopMatrix();
-    glEndList();						
-
-    //Ahora construye los ejes
-	glPushAttrib(GL_ENABLE_BIT|GL_CURRENT_BIT);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_TEXTURE_2D);
-    //Eje X en rojo
-    glColor3fv(ROJO);
-    glPushMatrix();
-    glRotatef(-90,0,0,1);
-    glCallList(id);
     glPopMatrix();
     //Eje Y en verde
     glColor3fv(VERDE);
     glPushMatrix();
-    glCallList(id);
+        glBegin(GL_LINES);
+            glVertex3f(0,0,0);
+            glVertex3f(0,1,0);
+        glEnd();
+        //Punta de la flecha
+        glPushMatrix();
+        glTranslatef(0,1,0);
+        glRotatef(-90,1,0,0);
+        glTranslatef(0.0,0.0,-1/10.0);
+		glutSolidCone(1/50.0,1/10.0,10,1);
+        glPopMatrix();
     glPopMatrix();
     //Eje Z en azul
     glColor3fv(AZUL);
     glPushMatrix();
     glRotatef(90,1,0,0);
-    glCallList(id);
+        glBegin(GL_LINES);
+            glVertex3f(0,0,0);
+            glVertex3f(0,1,0);
+        glEnd();
+        //Punta de la flecha
+        glPushMatrix();
+        glTranslatef(0,1,0);
+        glRotatef(-90,1,0,0);
+        glTranslatef(0.0,0.0,-1/10.0);
+		glutSolidCone(1/50.0,1/10.0,10,1);
+        glPopMatrix();
     glPopMatrix();
     //Esferita en el origen
     glColor3f(0.5,0.5,0.5);
 	glutSolidSphere(0.05,8,8);
 	glPopAttrib();
-	//Limpieza
-	glDeleteLists(id,1);
+	glPopClientAttrib();
 }
 
 void texto(unsigned int x, unsigned int y, char *text, const GLfloat *color, void *font, bool WCS)
@@ -329,7 +348,7 @@ void texto(unsigned int x, unsigned int y, char *text, const GLfloat *color, voi
 
 void loadImageFile(char* nombre)
 {
-	// Detección del formato, lectura y conversion a BGRA
+	// Detecciï¿½n del formato, lectura y conversion a BGRA
 	FREE_IMAGE_FORMAT formato = FreeImage_GetFileType(nombre,0);
 	FIBITMAP* imagen = FreeImage_Load(formato, nombre); 
 	if(imagen==NULL) cerr << "Fallo carga de imagen " << nombre <<endl;
