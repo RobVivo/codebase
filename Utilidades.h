@@ -34,16 +34,15 @@ using namespace std;
 
 const GLfloat BLANCO[] = {1,1,1,1};
 const GLfloat NEGRO[]  = {0,0,0,1};
-const GLfloat GRISCLARO[]  = {0.7,0.7,0.7,1};
-const GLfloat GRISOSCURO[]  = {0.2,0.2,0.2,1};
+const GLfloat GRISCLARO[]  = {0.7f,0.7f,0.7f,1};
+const GLfloat GRISOSCURO[]  = {0.2f,0.2f,0.2f,1};
 const GLfloat ROJO[]   = {1,0,0,1};
 const GLfloat VERDE[]  = {0,1,0,1};
 const GLfloat AZUL[]   = {0,0,1,1};
 const GLfloat AMARILLO[] = {1,1,0,1};
-const GLfloat BRONZE[] = {140.0/255,120.0/255,83.0/255,1};
-const GLfloat BRONCE[] = {140.0/255,120.0/255,83.0/255,1};
-const GLfloat MARINO[] = {0,0,0.5,1};
-const GLfloat ORO[] = {218.0/255,165.0/255,32.0/255,1};
+const GLfloat BRONCE[] = {140.0f/255,120.0f/255,83.0f/255,1};
+const GLfloat MARINO[] = {0,0,0.5f,1};
+const GLfloat ORO[] = {218.0f/255,165.0f/255,32.0f/255,1};
 
 
 void planoXY(int resolucion = 10);
@@ -268,7 +267,7 @@ void ejes()
         glPushMatrix();
         glTranslatef(0,1,0);
         glRotatef(-90,1,0,0);
-        glTranslatef(0.0,0.0,-1/10.0);
+        glTranslatef(0.0,0.0,-1/10.0f);
 		glutSolidCone(1/50.0,1/10.0,10,1);
         glPopMatrix();
     glPopMatrix();
@@ -283,7 +282,7 @@ void ejes()
         glPushMatrix();
         glTranslatef(0,1,0);
         glRotatef(-90,1,0,0);
-        glTranslatef(0.0,0.0,-1/10.0);
+        glTranslatef(0.0,0.0,-1/10.0f);
 		glutSolidCone(1/50.0,1/10.0,10,1);
         glPopMatrix();
     glPopMatrix();
@@ -299,7 +298,7 @@ void ejes()
         glPushMatrix();
         glTranslatef(0,1,0);
         glRotatef(-90,1,0,0);
-        glTranslatef(0.0,0.0,-1/10.0);
+        glTranslatef(0.0,0.0,-1/10.0f);
 		glutSolidCone(1/50.0,1/10.0,10,1);
         glPopMatrix();
     glPopMatrix();
@@ -383,7 +382,7 @@ void saveScreenshot(char* nombre, int ancho, int alto)
 	glReadPixels(0,0,ancho,alto,GL_BGR_EXT,GL_UNSIGNED_BYTE, pixels);
 	FIBITMAP *img = FreeImage_ConvertFromRawBits(pixels, ancho, alto,ancho*3, 24, 0xFF0000, 0x00FF00, 0x0000FF, false);
 	FreeImage_Save(FIF_PNG, img, nombre, 0);
-	delete pixels;
+	delete[] pixels;
 }
 
 void texturarFondo()
