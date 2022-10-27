@@ -1,21 +1,29 @@
 #ifndef UTILIDADES
-#define UTILIDADES V1.0
+#define UTILIDADES V2.0
 /* 
-	Refactory general ..... R.Vivo',2013
-	Ampliacion colores .... R.Vivo',2014
-	Bugs rad() y deg() .... R.Vivo',2014
-	Texto en WCS y DCS .... R.Vivo',2015
+*	Utilidades.h
+* 
+*	Codigo de ayuda al aprendizaje de la programación básica en OpenGL
+* 
+*	@author	R.Vivo'
+* 
+*	Refactory general              2.13
+*	Ampliacion colores             2.14
+*	Bugs rad() y deg()             2.15
+*	Texto en WCS y DCS             2.16
+*	Bugfix Dls vs. ClientArrays    2.22
+* 
 */
 
 #include <iostream>
 #include <cmath>
 #include <GL/freeglut.h>
-#include <GL/glext.h>
+//#include <GL/glext.h>
 #include <freeimage/FreeImage.h>
 
 using namespace std;
 
-#define PI 3.1415926
+#define PI 3.1415926f
 #ifndef max
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
@@ -372,7 +380,7 @@ void saveScreenshot(char* nombre, int ancho, int alto)
 	int pix = ancho * alto;
 	BYTE *pixels = new BYTE[3*pix];
 	glReadBuffer(GL_FRONT);
-	glReadPixels(0,0,ancho,alto,GL_BGR,GL_UNSIGNED_BYTE, pixels);
+	glReadPixels(0,0,ancho,alto,GL_BGR_EXT,GL_UNSIGNED_BYTE, pixels);
 	FIBITMAP *img = FreeImage_ConvertFromRawBits(pixels, ancho, alto,ancho*3, 24, 0xFF0000, 0x00FF00, 0x0000FF, false);
 	FreeImage_Save(FIF_PNG, img, nombre, 0);
 	delete pixels;

@@ -12,9 +12,11 @@ Se suministran ficheros de cabecera (.h), bibliotecas (.lib) y bibliotecas dinám
 
 ## Uso
 
-* `./include`: encaminar a través de la hoja de propiedades del proyecto
-* `./lib`: encaminar a través de la hoja de propiedades del proyecto
-* `./dll`: encaminar con la variable PATH de la cuenta de usuario en el sistema
+* `./GL`: encaminar a través de la hoja de propiedades del proyecto para ficheros de inclusión (*.h .hpp*)
+* `./lib/x86`: encaminar a través de la hoja de propiedades del proyecto para bibliotecas (*.lib*) para plataforma `Release|Win32`
+* `./lib/x64`: encaminar a través de la hoja de propiedades del proyecto para bibliotecas (*.lib*) para plataforma `Release|x64`
+* `./dll/x86`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `Win32`
+* `./dll/x64`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `x64`
 
 ## Código adicional
 
