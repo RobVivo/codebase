@@ -13,10 +13,10 @@ Se suministran ficheros de cabecera (.h), bibliotecas (.lib) y bibliotecas dinï¿
 ## Uso
 
 * `./GL`: encaminar a travï¿½s de la hoja de propiedades del proyecto para ficheros de inclusiï¿½n (*.h .hpp*)
-* `./lib/x86`: encaminar a travï¿½s de la hoja de propiedades del proyecto para bibliotecas (*.lib*) para plataforma `Release|Win32`
+* `./lib/x86`: encaminar a travÃ©s de la hoja de propiedades del proyecto para bibliotecas (*.lib*) para plataforma `Release|Win32`
 * `./lib/x64`: encaminar a travï¿½s de la hoja de propiedades del proyecto para bibliotecas (*.lib*) para plataforma `Release|x64`
-* `./dll/x86`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `Win32`
-* `./dll/x64`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `x64`
+* `./bin/x86`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `Win32`
+* `./bin/x64`: encaminar con la variable PATH de la cuenta de usuario para ejecutables en plataforma `x64`
 
 ## Cï¿½digo adicional
 
