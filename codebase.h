@@ -75,6 +75,7 @@ public:
 	array<float, 3> toArray() const { return { x,y,z }; }
 	static GLfloat* to3fv(const Vec3& p) { return (GLfloat*)&p; }
 	operator GLfloat* () { return to3fv(*this); }
+	operator const GLfloat* () const { return to3fv(*this); }
 
 };
 
