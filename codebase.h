@@ -121,7 +121,7 @@ namespace cb {
 		bool enCono(const Vec3& p, float angulo) const {
 			// Comprueba si un punto esta dentro del cono de angulo radianes del eje -w
 			Vec3 q = global2local(p).normalize();
-			return q.dot(w) < -cosf(angulo);
+			return q.z < -cosf(angulo);
 		};
 		Vec3 puntoCono(float angulo, float maxDistance) const {
 			// Devuelve un punto aleatorio dentro del cono de angulo radianes del eje -w
